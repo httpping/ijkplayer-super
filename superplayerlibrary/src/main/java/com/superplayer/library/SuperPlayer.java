@@ -386,6 +386,7 @@ public class SuperPlayer extends RelativeLayout {
         } catch (Throwable e) {
             Log.e("GiraffePlayer", "loadLibraries error", e);
         }
+
         screenWidthPixels = activity.getResources().getDisplayMetrics().widthPixels;
         $ = new Query(activity);
         contentView = View.inflate(context, R.layout.view_super_player, this);

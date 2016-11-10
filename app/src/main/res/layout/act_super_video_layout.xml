@@ -10,6 +10,7 @@
         <com.superplayer.library.SuperPlayer
             android:id="@+id/view_super_player"
             android:layout_width="match_parent"
+            android:visibility="invisible"
             android:layout_height="210dp"></com.superplayer.library.SuperPlayer>
         <TextView
             android:id="@+id/tv_super_player_complete"
@@ -17,9 +18,8 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:textSize="20sp"
-            android:textColor="@android:color/white"
-            android:visibility="gone"
-            android:text="视频播放完成"/>
+            android:background="#88000000"
+            android:text="视频播放"/>
 
     </FrameLayout>
     <TextView

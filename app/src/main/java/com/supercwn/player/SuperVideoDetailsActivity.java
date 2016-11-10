@@ -60,16 +60,23 @@ public class SuperVideoDetailsActivity extends AppCompatActivity implements View
         if(isLive){
             player.setLive(true);//设置该地址是直播的地址
         }
-        player.setNetChangeListener(true)//设置监听手机网络的变化
-                .setOnNetChangeListener(this)//实现网络变化的回调
-                .onPrepared(new SuperPlayer.OnPreparedListener() {
-                    @Override
-                    public void onPrepared() {
-                        /**
-                         * 监听视频是否已经准备完成开始播放。（可以在这里处理视频封面的显示跟隐藏）
-                         */
-                    }
-                }).onComplete(new Runnable() {
+        findViewById(R.id.tv_super_player_complete).setVisibility(View.VISIBLE);
+
+        player.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                findViewById(R.id.tv_super_player_complete).setVisibility(View.GONE);
+                player.setVisibility(View.VISIBLE);
+                player.setNetChangeListener(true)//设置监听手机网络的变化
+                        .setOnNetChangeListener(SuperVideoDetailsActivity.this)//实现网络变化的回调
+                        .onPrepared(new SuperPlayer.OnPreparedListener() {
+                            @Override
+                            public void onPrepared() {
+                                /**
+                                 * 监听视频是否已经准备完成开始播放。（可以在这里处理视频封面的显示跟隐藏）
+                                 */
+                            }
+                        }).onComplete(new Runnable() {
                     @Override
                     public void run() {
                         /**
@@ -93,8 +100,11 @@ public class SuperVideoDetailsActivity extends AppCompatActivity implements View
 
                     }
                 }).setTitle(url)//设置视频的titleName
-                .play(url);//开始播放视频
-        player.setScaleType(SuperPlayer.SCALETYPE_FITXY);
+                        .play(url);//开始播放视频
+            }
+        },100);
+
+        player.setScaleType(SuperPlayer.SCALETYPE_16_9);
         player.setPlayerWH(0,player.getMeasuredHeight());//设置竖屏的时候屏幕的高度，如果不设置会切换后按照16:9的高度重置
     }
 

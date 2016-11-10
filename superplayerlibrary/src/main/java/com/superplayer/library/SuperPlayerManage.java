@@ -25,7 +25,7 @@ public class SuperPlayerManage {
     }
 
     public SuperPlayer initialize(Context context) {
-        if (videoPlayView == null) {
+        if (videoPlayView == null || !videoPlayView.getContext().equals(context)) {
             videoPlayView = new SuperPlayer(context);
         }
         return videoPlayView;
